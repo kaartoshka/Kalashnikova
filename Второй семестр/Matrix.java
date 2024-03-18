@@ -1,9 +1,11 @@
 import java.util.Random;
 
 class Matrix{
+    int size;
     int[][] matrix;
-    public Matrix(int[][] matrix){
-        this.matrix = matrix;
+    public Matrix(int size){
+        this.size = size;
+        matrix = new int[size][size];
     }
     int calculate(int n, int m){
         int d = 1;
@@ -24,29 +26,28 @@ class Matrix{
             return d;
         } else if (m < n) {
             return dUp;
-        } else if (m > n) {
+        } else {
             return dDown;
         }
-        return d;
     }
 
-     void matrixPrint() {
+    String matrixPrint() {
+        StringBuilder matrixString = new StringBuilder();
         for (int[] ints : matrix) {
             for (int j = 0; j < matrix[0].length; j++) {
-                System.out.print(" " + ints[j] + " ");
+                matrixString.append(" ").append(ints[j]).append(" ");
             }
-            System.out.println();
-        }
+            matrixString.append("\n");
+        };
+        return matrixString.toString();
     }
 
-    static int[][] matrixCreate(int n){
-        int[][] matrix = new int[n][n];
-        for (int i = 0; i < n; i++){
-            for (int j = 0; j < n; j++){
+    void fillMatrix(){
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
                 Random random = new Random();
                 matrix[i][j] = random.nextInt(10);
             }
         }
-        return matrix;
     }
 }
